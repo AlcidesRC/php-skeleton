@@ -1,4 +1,9 @@
 {
+    "name": "fonil/php-skeleton",
+    "description": "Application skeleton for projects based on PHP",
+    "type": "project",
+    "keywords": ["bootstrap", "skeleton", "php", "TDD", "DDD", "clean code", "boilerplate", "best practices"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Alcides Ramos",
@@ -31,13 +36,16 @@
     },
     "scripts": {
         "clear-coverage": "rm -Rf /coverage/*",
-        "tests": "phpunit --no-coverage --colors --testdox --order-by=random --random-order-seed=$(head -200 /dev/urandom | cksum | cut -f1 -d \" \")",
+        "tests": [
+            "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 app/ tests/",
+            "phpunit --configuration phpunit.xml --no-coverage --colors --testdox --order-by=random --random-order-seed=$(head -200 /dev/urandom | cksum | cut -f1 -d \" \")"
+        ],
         "coverage": [
             "@clear-coverage",
-            "phpunit --coverage-text --coverage-html=/coverage --colors --testdox --order-by=random --random-order-seed=$(head -200 /dev/urandom | cksum | cut -f1 -d \" \")"
+            "phpunit --configuration phpunit.xml --coverage-text --coverage-html=/coverage --colors --testdox --order-by=random --random-order-seed=$(head -200 /dev/urandom | cksum | cut -f1 -d \" \")"
         ],
-        "phpcs": "phpcs --colors --standard=PSR12 app/ tests/",
-        "phpcbf": "phpcbf --colors --standard=PSR12 app/ tests/",
+        "phpcs": "phpcs -p --colors --standard=PSR12 app/ tests/",
+        "phpcbf": "phpcbf -p --colors --standard=PSR12 app/ tests/",
         "linter": "parallel-lint --colors -e php -j 10 app/ tests/",
         "phpstan": "phpstan analyse --ansi --memory-limit=1G --configuration=phpstan.neon"
     },
