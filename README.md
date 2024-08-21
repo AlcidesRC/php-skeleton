@@ -28,7 +28,7 @@ To use this repository you need:
 
 ## Built with
 
-This project was built with [Dockerized PHP](https://github.com/fonil/dockerized-php), a lightweight dockerized environment to build PHP applications. 
+This project was built with [Dockerized PHP](https://github.com/alcidesrc/dockerized-php), a lightweight dockerized environment to build PHP applications. 
 
 
 ## Getting Started
@@ -37,7 +37,7 @@ Just clone the repository into your preferred path:
 
 ```bash
 $ mkdir -p ~/path/to/my-new-project && cd ~/path/to/my-new-project
-$ git clone git@github.com:fonil/php-skeleton.git .
+$ git clone git@github.com:alcidesrc/php-skeleton.git .
 ```
 
 ### Conventions
@@ -154,7 +154,7 @@ Only the latest major version receives security fixes.
 
 ### Reporting a Vulnerability
 
-If you discover a security vulnerability within this project, please [open an issue here](https://github.com/fonil/php-skeleton/issues). All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within this project, please [open an issue here](https://github.com/alcidesrc/php-skeleton/issues). All security vulnerabilities will be promptly addressed.
 
 ## License
 
