@@ -107,10 +107,6 @@ Additionally a *Makefile* is provided with frequently used commands:
 · coverage                       QA: <composer coverage>
 ```
 
-> [!NOTE]
->
-> This file is really useful when you create a container with a project based on this repository and you want to run those commands from outside the container, directly from your *host*. To do so just copy and paste the included steps on your main *Makefile* and adjust the constants accordingly.
-
 ##### Installing Dependencies
 
 ```bash
