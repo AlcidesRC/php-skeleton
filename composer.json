@@ -1,5 +1,5 @@
 {
-    "name": "fonil/php-skeleton",
+    "name": "alcidesrc/php-skeleton",
     "description": "Application skeleton for projects based on PHP",
     "type": "project",
     "keywords": ["bootstrap", "skeleton", "php", "TDD", "DDD", "clean code", "boilerplate", "best practices"],
