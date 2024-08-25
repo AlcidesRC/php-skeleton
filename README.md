@@ -1,3 +1,5 @@
+[![Continuous Integration](https://github.com/AlcidesRC/php-skeleton/actions/workflows/ci.yml/badge.svg)](https://github.com/AlcidesRC/php-skeleton/actions/workflows/ci.yml)
+
 # PHP Skeleton
 
 
