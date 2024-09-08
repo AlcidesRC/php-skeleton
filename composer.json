@@ -53,7 +53,7 @@
         "fix-style": "phpcbf -p --colors --standard=phpcs.xml app/ tests/",
         "phpstan": "phpstan analyse --ansi --memory-limit=1G --configuration=phpstan.neon",
         "phpmd": "phpmd app/,tests/ ansi cleancode,codesize,controversial,design,naming,unusedcode",
-        "tests": "phpunit --configuration phpunit.xml --coverage-text --colors --testdox --order-by=random --random-order-seed=$(head -200 /dev/urandom | cksum | cut -f1 -d \" \")"
+        "tests": "XDEBUG_MODE=off phpunit --configuration phpunit.xml --coverage-text --colors --testdox --order-by=random --random-order-seed=$(head -200 /dev/urandom | cksum | cut -f1 -d \" \")"
     },
     "minimum-stability": "stable",
     "prefer-stable": true
