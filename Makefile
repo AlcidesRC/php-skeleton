@@ -134,11 +134,11 @@ phpstan: ## [QA] Executes <phpstan> inside the container <filter=[app|path]>
 tests: ## [QA] Executes <phpunit> inside the container <testsuite=[Unit|...]> <filter=[.|method + filename]>
 	@$(eval testsuite ?= 'Unit')
 	@$(eval filter ?= '.')
-	@vendor/bin/phpunit --testsuite=$(testsuite) --filter=$(filter) --configuration=phpunit.xml --coverage-text --testdox --colors --order-by=random --random-order-seed=$(RANDOM_ORDER_SEED)
+	@XDEBUG_MODE=off vendor/bin/phpunit --testsuite=$(testsuite) --filter=$(filter) --configuration=phpunit.xml --coverage-text --testdox --colors --order-by=random --random-order-seed=$(RANDOM_ORDER_SEED)
 	$(call taskDone)
 
 .PHONY: coverage
 coverage: ## [QA] Executes <phpunit with pcov coverage support> inside the container
 	@rm -Rf /coverage/*
-	@vendor/bin/phpunit --coverage-html=/coverage --configuration=phpunit.xml --coverage-text --testdox --colors --order-by=random --random-order-seed=$(RANDOM_ORDER_SEED)
+	@XDEBUG_MODE=off vendor/bin/phpunit --coverage-html=/coverage --configuration=phpunit.xml --coverage-text --testdox --colors --order-by=random --random-order-seed=$(RANDOM_ORDER_SEED)
 	$(call taskDone)
