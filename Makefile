@@ -107,40 +107,38 @@ composer-update: ## [COMPOSER] Executes <composer update> inside the container
 ###
 
 .PHONY: check-syntax
-check-syntax: ## [QA] Executes <check-syntax [filter=app]> inside the container
+check-syntax: ## [QA] Executes <check-syntax> inside the container <filter=[app|path]>
 	@$(eval filter ?= 'app')
 	@vendor/bin/parallel-lint --colors -e php -j 10 $(filter)
 	$(call taskDone)
 
 .PHONY: check-style
-check-style: ## [QA] Executes <check-style [filter=app]> inside the container
+check-style: ## [QA] Executes <check-style> inside the container <filter=[app|path]>
 	@$(eval filter ?= 'app')
 	@vendor/bin/phpcs -p --colors --standard=phpcs.xml $(filter)
 	$(call taskDone)
 
 .PHONY: fix-style
-fix-style: ## [QA] Executes <fix-style [filter=app]> inside the container
+fix-style: ## [QA] Executes <fix-style> inside the container <filter=[app|path]>
 	@$(eval filter ?= 'app')
 	@vendor/bin/phpcbf -p --colors --standard=phpcs.xml $(filter)
 	$(call taskDone)
 
 .PHONY: phpstan
-phpstan: ## [QA] Executes <phpstan [filter=app]> inside the container
+phpstan: ## [QA] Executes <phpstan> inside the container <filter=[app|path]>
 	@$(eval filter ?= 'app')
 	@vendor/bin/phpstan analyse --ansi --memory-limit=1G --no-progress --configuration=phpstan.neon $(filter)
 	$(call taskDone)
 
 .PHONY: tests
-tests: ## [QA] Executes <phpunit --testsuite=[testsuite=Unit] --filter=[filter=.]> inside the container
+tests: ## [QA] Executes <phpunit> inside the container <testsuite=[Unit|...]> <filter=[.|method + filename]>
 	@$(eval testsuite ?= 'Unit')
 	@$(eval filter ?= '.')
 	@vendor/bin/phpunit --testsuite=$(testsuite) --filter=$(filter) --configuration=phpunit.xml --coverage-text --testdox --colors --order-by=random --random-order-seed=$(RANDOM_ORDER_SEED)
 	$(call taskDone)
 
 .PHONY: coverage
-coverage: ## [QA] Executes <phpunit --coverage-html=[folder=./coverage]> inside the container
-	@$(eval folder ?= './coverage')
-	@rm -Rf $(folder) || true
-	@mkdir $(folder)
-	@vendor/bin/phpunit --coverage-html=$(folder) --configuration=phpunit.xml --coverage-text --testdox --colors --order-by=random --random-order-seed=$(RANDOM_ORDER_SEED)
+coverage: ## [QA] Executes <phpunit with pcov coverage support> inside the container
+	@rm -Rf /coverage/*
+	@vendor/bin/phpunit --coverage-html=/coverage --configuration=phpunit.xml --coverage-text --testdox --colors --order-by=random --random-order-seed=$(RANDOM_ORDER_SEED)
 	$(call taskDone)
