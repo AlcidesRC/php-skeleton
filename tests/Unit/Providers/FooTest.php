@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace UnitTests\Providers;
 
 use App\Providers\Foo;
+use DateTime;
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -17,7 +18,7 @@ final class FooTest extends TestCase
 {
     protected function setUp(): void
     {
-        ClockMock::freeze(new \DateTime('2024-01-01 00:00:00'));
+        ClockMock::freeze(new DateTime('2024-01-01 00:00:00'));
     }
 
     protected function tearDown(): void
@@ -29,9 +30,9 @@ final class FooTest extends TestCase
     #[DataProvider('dataProviderForGetDateTime')]
     public function checkGetDateTime(string $format): void
     {
-        $expectedCurrentDateTime = (new DateTimeImmutable())->format($format);
+        $datetime = new DateTimeImmutable();
 
-        self::assertEquals($expectedCurrentDateTime, Foo::getDateTime($format));
+        self::assertEquals($datetime->format($format), Foo::getDateTime($format));
     }
 
     /**
@@ -39,10 +40,12 @@ final class FooTest extends TestCase
      */
     public static function dataProviderForGetDateTime(): array
     {
+        $datetime = new DateTimeImmutable();
+
         return [
-            '[CURRENT DATE TIME]' => ['Y-m-d H:i:s'],
-            '[CURRENT DATE]' => ['Y-m-d'],
-            '[CURRENT TIME]' => ['H:i:s'],
+            '[CURRENT DATE TIME]' => [$datetime->format('Y-m-d H:i:s')],
+            '[CURRENT DATE]' => [$datetime->format('Y-m-d')],
+            '[CURRENT TIME]' => [$datetime->format('H:i:s')],
         ];
     }
 

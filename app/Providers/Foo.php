@@ -8,9 +8,9 @@ use DateTimeImmutable;
 
 final class Foo
 {
-    public static function getDateTime(?string $format = 'Y-m-d H:i:s'): string
+    public static function getDateTime(?string $format): string
     {
-        return (new DateTimeImmutable())->format($format);
+        return (new DateTimeImmutable())->format($format ?? 'Y-m-d H:i:s');
     }
 
     public function ping(): string
