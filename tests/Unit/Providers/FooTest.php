@@ -52,9 +52,11 @@ final class FooTest extends TestCase
     #[Test]
     public function checkMockFinalClass(): void
     {
-        self::assertEquals('pong', (new Foo())->ping());
+        $instance = new Foo();
 
-        $mock = $this->createMock(Foo::class);
+        self::assertEquals('pong', $instance->ping());
+
+        $mock = $this->createMock(get_class($instance));
         $mock->expects(self::once())->method('ping')->willReturn('knock knock');
 
         self::assertEquals('knock knock', $mock->ping());
