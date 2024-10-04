@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Providers;
+namespace UnitTests\Providers;
 
 use App\Providers\Foo;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -28,7 +28,7 @@ final class FooTest extends TestCase
     #[DataProvider('dataProviderForDump')]
     public function checkInvokeMethod(string $expectedLog): void
     {
-        $this->assertEquals($expectedLog, Foo::dump());
+        self::assertEquals($expectedLog, Foo::dump());
     }
 
     /**
@@ -38,8 +38,19 @@ final class FooTest extends TestCase
     {
         return [
             '[DEFAULT CASE]' => [
-                '[01-Jan-2023 00:00:00] App\Providers\Foo: Executed method [ dump ] in [ DEVELOPMENT ] mode' . PHP_EOL,
+                '[2023-01-01 00:00:00] App\Providers\Foo: Executed method [ dump ] in [ DEVELOPMENT ] mode' . PHP_EOL,
             ],
         ];
+    }
+
+    #[Test]
+    public function checkMockFinal(): void
+    {
+        self::assertEquals('pong', (new Foo())->ping());
+
+        $mock = $this->createMock(Foo::class);
+        $mock->method('ping')->willReturn('pong pong');
+
+        self::assertEquals('pong pong', $mock->ping());
     }
 }
