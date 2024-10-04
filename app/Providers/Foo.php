@@ -8,13 +8,9 @@ use DateTimeImmutable;
 
 final class Foo
 {
-    public static function dump(): string
+    public static function getDateTime(?string $format = 'Y-m-d H:i:s'): string
     {
-        $date = (new DateTimeImmutable())->format('Y-m-d H:i:s');
-
-        $line = 'Executed method [ ' . __FUNCTION__ . ' ] in [ ' . getenv('ENV') . ' ] mode' . PHP_EOL;
-
-        return sprintf('[%s] %s: %s', $date, self::class, $line);
+        return (new DateTimeImmutable())->format($format);
     }
 
     public function ping(): string
