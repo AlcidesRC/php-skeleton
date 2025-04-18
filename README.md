@@ -50,7 +50,7 @@ $ git clone git@github.com:alcidesrc/php-skeleton.git .
 .
 ├── app                 # Your application business logic goes here
 ├── composer.json       # Application dependencies main file
-├── composer.lock 		# Application dependencies locked file
+├── composer.lock       # Application dependencies locked file
 ├── LICENSE
 ├── Makefile
 ├── phpcs.xml           # PHPCS configuration file
@@ -85,11 +85,11 @@ Additionally a *Makefile* is provided with frequently used commands:
 ```bash
 ~/path/to/my-new-project$ make
 
-╔════════════════════════════════════════════════════════════════════════════════════════════════════════╗
-║ 	                                                                                                     ║
-║ 	                                 .: AVAILABLE COMMANDS :. 	                                         ║
-║ 	                                                                                                     ║
-╚════════════════════════════════════════════════════════════════════════════════════════════════════════╝
+╔════════════════════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                                ║
+║ 	                                 .: AVAILABLE COMMANDS :.                                ║
+║                                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════════════════════╝
 
 · composer-dump                  Composer: executes <composer dump-auto> inside the container
 · composer-install               Composer: executes <composer install> inside the container
