@@ -61,4 +61,4 @@ jobs:
         run: composer phpstan
 
       - name: Check Test Cases
-        run: composer tests
+        run: composer paratest
