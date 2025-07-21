@@ -3,7 +3,7 @@
 # PHP Skeleton
 
 
-> An application skeleton for modern PHP projects. 
+> An application skeleton for modern PHP projects, PoC, side-projects... 
 
 
 [TOC]
