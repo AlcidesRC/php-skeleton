@@ -48,7 +48,7 @@ jobs:
         run: composer validate --working-dir=. --strict
 
       - name: Install PHP dependencies
-        run: composer update --${{ matrix.dependency-version }} --ansi  --no-interaction --prefer-dist --no-dev
+        run: composer update --${{ matrix.dependency-version }} --ansi  --no-interaction --prefer-dist
 
       - name: Check PHP Syntax
         run: composer check-syntax
