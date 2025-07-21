@@ -21,13 +21,20 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php: ['8.4']
+        composer-version: [v2]
         dependency-version: [prefer-lowest, prefer-stable]
 
-    name: PHP ${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.dependency_version }}
+    name: ${{ matrix.php }} - ${{ matrix.os }} - Composer ${{ matrix.composer-version }} --${{ matrix.dependency-version }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+            path: ~/.composer/cache/files
+            key: dependencies-php-${{ matrix.php }}-composer-${{ matrix.composer-version }}-${{ hashFiles('composer.json') }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -35,24 +42,13 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: zip
           coverage: pcov
-
-      - name: Get Composer cache directory
-        id: composer-cache
-        shell: bash
-        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-            path: ${{ steps.composer-cache.outputs.dir }}
-            key: dependencies-php-${{ matrix.php }}-os-${{ matrix.os }}-version-${{ matrix.dependency-version }}-composer-${{ hashFiles('composer.json') }}
-            restore-keys: dependencies-php-${{ matrix.php }}-os-${{ matrix.os }}-version-${{ matrix.dependency-version }}-composer-
+          tools: composer:${{ matrix.composer-version }}
 
       - name: Validate composer.json and composer.lock
         run: composer validate --working-dir=. --strict
 
       - name: Install PHP dependencies
-        run: composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist
+        run: composer update --${{ matrix.dependency-version }} --ansi  --no-interaction --prefer-dist --no-dev
 
       - name: Check PHP Syntax
         run: composer check-syntax
