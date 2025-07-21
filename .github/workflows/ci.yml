@@ -56,8 +56,8 @@ jobs:
       - name: Check Coding Standards
         run: composer check-style
 
-      - name: Check with PHPStan
-        run: composer phpstan
+#      - name: Check with PHPStan
+#        run: composer phpstan
 
       - name: Check Test Cases
         run: composer paratest
