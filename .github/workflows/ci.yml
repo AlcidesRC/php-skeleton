@@ -39,14 +39,13 @@ jobs:
       - name: Validate composer.json and composer.lock
         run: composer validate --working-dir=. --strict
 
-      - name: Cache Composer packages
-        id: composer-cache
+      - name: Cache Composer dependencies
         uses: actions/cache@v4
         with:
-          path: ./src/vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
+            path: vendor
+            key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+            restore-keys: |
+                ${{ runner.os }}-php-
 
       - name: Install PHP dependencies
         run: composer install --working-dir=. --${{ matrix.dependency_version }} --no-interaction --no-progress --ansi
