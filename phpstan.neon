@@ -5,5 +5,5 @@ parameters:
 		- tests
 	ignoreErrors:
 		-
-			message: '#Return type of call to method#'
+			message: '#Return type of call to method PHPUnit\\Framework\\TestCase\:\:createMock\(\) contains unresolvable type.#'
 			path: tests/Unit/Providers/FooTest.php
