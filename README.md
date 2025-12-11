@@ -87,7 +87,7 @@ Additionally a *Makefile* is provided with frequently used commands:
 
 ╔════════════════════════════════════════════════════════════════════════════════════════════════╗
 ║                                                                                                ║
-║ 	                                 .: AVAILABLE COMMANDS :.                                ║
+║ 	                                 .: AVAILABLE COMMANDS :.                                    ║
 ║                                                                                                ║
 ╚════════════════════════════════════════════════════════════════════════════════════════════════╝
 
@@ -101,8 +101,8 @@ Additionally a *Makefile* is provided with frequently used commands:
 · check-style                    QA: executes <check-style> inside the container
 · fix-style                      QA: executes <fix-style> inside the container
 · phpstan                        QA: executes <composer phpstan> inside the container
-· test                           QA: executes <composer paratest> inside the container
-· coverage                       QA: executes <composer paracoverage> inside the container
+· test                           QA: executes <composer test> inside the container
+· coverage                       QA: executes <composer coverage> inside the container
 
 ```
 
