@@ -123,21 +123,21 @@ composer-update: ## Composer: executes <composer update> inside the container
 ###
 
 .PHONY: check-syntax
-check-syntax: ## QA: executes <check-syntax> inside the container
+check-syntax: ## QA: executes <composer check-syntax> inside the container
 	$(call showInfo,"Executing \<composer check-syntax\>...")
 	@echo ""
 	@$(DOCKER_RUN_AS_USER) composer check-syntax
 	$(call taskDone)
 
 .PHONY: check-style
-check-style: ## QA: executes <check-style> inside the container
+check-style: ## QA: executes <composer check-style> inside the container
 	$(call showInfo,"Executing \<composer check-style\>...")
 	@echo ""
 	@$(DOCKER_RUN_AS_USER) composer check-style
 	$(call taskDone)
 
 .PHONY: fix-style
-fix-style: ## QA: executes <fix-style> inside the container
+fix-style: ## QA: executes <composer fix-style> inside the container
 	$(call showInfo,"Executing \<composer fix-style\>...")
 	@echo ""
 	@$(DOCKER_RUN_AS_USER) composer fix-style
@@ -151,15 +151,15 @@ phpstan: ## QA: executes <composer phpstan> inside the container
 	$(call taskDone)
 
 .PHONY: tests
-test: ## QA: executes <composer paratest> inside the container
-	$(call showInfo,"Executing \<composer paratest\>...")
+test: ## QA: executes <composer test> inside the container
+	$(call showInfo,"Executing \<composer test\>...")
 	@echo ""
 	@$(DOCKER_RUN_AS_USER) composer test
 	$(call taskDone)
 
 .PHONY: coverage
-coverage: ## QA: executes <composer paracoverage> inside the container
-	$(call showInfo,"Executing \<composer paracoverage\>...")
+coverage: ## QA: executes <composer coverage> inside the container
+	$(call showInfo,"Executing \<composer coverage\>...")
 	@echo ""
 	@$(DOCKER_RUN_AS_USER) composer coverage
 	$(call taskDone)
