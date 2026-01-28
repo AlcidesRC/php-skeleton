@@ -20,7 +20,7 @@ jobs:
       fail-fast: true
       matrix:
         os: [ubuntu-latest]
-        php: ['8.4']
+        php: ['8.5']
         composer-version: [v2]
         dependency-version: [prefer-lowest, prefer-stable]
 
