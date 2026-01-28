@@ -1,4 +1,4 @@
-[![Continuous Integration](https://github.com/AlcidesRC/php-skeleton/actions/workflows/ci.yml/badge.svg)](https://github.com/AlcidesRC/php-skeleton/actions/workflows/ci.yml)
+[![Continuous Integration](https://github.com/AlcidesRC/php-skeleton/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/AlcidesRC/php-skeleton/actions/workflows/ci.yml)
 
 # PHP Skeleton
 
